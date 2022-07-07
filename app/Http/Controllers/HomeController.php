@@ -17,21 +17,29 @@ class HomeController extends Controller
     {
         $sort = request()->input('sort');
         $condition = request()->input('condition');
-        if ($sort > 0 && $condition == null) {
-            $home = $this->model->where('user_id',auth()->user()->id)->where('category_id', $sort)->get();
-        } else
-        if ($condition > 0 && $sort == null) {
-            $home = $this->model->where('user_id',auth()->user()->id)->where('status', $condition)->get();
-        } else
-            if ($sort && $condition) {
-            $home = $this->model->where('status', $condition)->where('user_id',auth()->user()->id)->where('Category_id', $sort)->get();
-        } else {
-            if(auth()->user()->is_role==false){
 
-                $home = $this->model->with('category', 'user')->where('user_id',auth()->user()->id)->get();
-            }
-            else
-            {
+        if (auth()->user()->is_role == false) {
+            if ($sort > 0 && $condition == null) {
+                $home = $this->model->where('user_id', auth()->user()->id)->where('category_id', $sort)->get();
+            } else
+            if ($condition > 0 && $sort == null) {
+                $home = $this->model->where('user_id', auth()->user()->id)->where('status', $condition)->get();
+            } else
+                if ($sort && $condition) {
+                $home = $this->model->where('status', $condition)->where('user_id', auth()->user()->id)->where('Category_id', $sort)->get();
+            } else {
+                $home = $this->model->with('category', 'user')->where('user_id', auth()->user()->id)->get();
+            };
+        } else {
+            if ($sort > 0 && $condition == null) {
+                $home = $this->model->where('category_id', $sort)->get();
+            } else
+            if ($condition > 0 && $sort == null) {
+                $home = $this->model->where('status', $condition)->get();
+            } else
+                if ($sort && $condition) {
+                $home = $this->model->where('status', $condition)->where('Category_id', $sort)->get();
+            } else {
                 $home = $this->model->with('category', 'user')->get();
             }
         }

@@ -110,6 +110,7 @@
                                 <option value="1" {{($condition==1?"selected":"")}}>Start</option>
                                 <option value="2" {{($condition==2?"selected":"")}}>Process</option>
                                 <option value="3" {{($condition==3?"selected":"")}}>Finish</option>
+                                <option value="4" {{($condition==4?"selected":"")}}>Canceled</option>
                             </select>
                            {{--  <input type="search" class="form-control" style="height: 1%; width: 60%;" name="search"
                                 value="{{ isset($search) ? $search : old('search') }}"> --}}
