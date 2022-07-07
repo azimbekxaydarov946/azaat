@@ -90,9 +90,11 @@
                 <div class="header">
                 </div>
                 <div class="body">
+                    @if (auth()->user()->is_role==false)
                     <a href="{{ route('home.create') }}" class="btn btn-raised btn-primary btn-round waves-effect"
-                        style="color: white">Create</a>
-                    <form action="{{ route('home') }}" style="display:inline-block; width: 30%; margin-left: 2%">
+                    style="color: white">Create</a>
+                    @endif
+                    <form action="{{ route('home') }}" style="display:inline-block; width: 30%;  {{(auth()->user()->is_role==true)? 'margin-left: 0%; margin-bottom: 0.4%;' : 'margin-left: 1%' }} ">
                         <div style="display: flex; justify-content: space-between">
                             @csrf
                             <select  class="form-control" style="height: 1%; width: 40%;" name="sort">
