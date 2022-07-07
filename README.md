@@ -1,1 +1,1 @@
-# azaat
+# azamat
