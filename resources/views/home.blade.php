@@ -193,9 +193,9 @@
                                         <td>{{ $item->category->name ?? '' }}</td>
                                         <td>
                                             <div class="badge badge-@php if($item->status == 1){
-                                                echo('primary');} else if($item->status==2){ echo('warning');} else{ echo('success');};
+                                                echo('primary');} else if($item->status==2){ echo('warning');} else if($item->status==4){ echo('danger');} else{ echo('success');};
                                                 @endphp badge-shadow" >@php if($item->status == 1){
-                                                echo('Start');} else if($item->status==2){ echo('Process');} else{ echo('Finish');};
+                                                echo('Start');} else if($item->status==2){ echo('Process');}  else if($item->status==4){ echo('Canceled');}else{ echo('Finish');};
                                                 @endphp</div>
                                         </td>
                                         <td style="width: 240px; display: flex; justify-content: space-between">
